@@ -9,6 +9,7 @@ import (
 )
 
 var orgFile string
+var heading string
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
@@ -33,6 +34,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	RootCmd.PersistentFlags().StringVar(&orgFile, "file", "", "org file to operate on")
+	RootCmd.PersistentFlags().StringVar(&heading, "heading", "INBOX", "Heading to add to")
 
 	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
