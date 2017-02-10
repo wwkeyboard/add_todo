@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/spf13/cobra"
 	"github.com/wwkeyboard/goorg"
@@ -40,6 +41,18 @@ func Run(cmd *cobra.Command, args []string) {
 		fmt.Println("Couldn't read org-mode file")
 	}
 
-	fmt.Printf("Read %v toplevel headlines\n", len(org.Headlines))
+	var ibox *goorg.Headline
 
+	for _, h := range org.Headlines {
+		if h.Title == modHeading {
+			ibox = h
+		}
+	}
+
+	if ibox == nil {
+		fmt.Println("couldn't find Headline")
+		os.Exit(1)
+	}
+
+	fmt.Println("found it")
 }
